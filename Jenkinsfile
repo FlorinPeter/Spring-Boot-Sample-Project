@@ -9,11 +9,6 @@ node("maven") {
     }
      stage('Integration Tests') {
         sh 'cd Spring-Boot-Sample-Project;mvn failsafe:integration-test'
-    }
-    
-    post {
-        always {
-            junit 'Spring-Boot-Sample-Project/target/surefire-reports/TEST-*.xml'
-        }
+        junit 'Spring-Boot-Sample-Project/target/surefire-reports/TEST-*.xml'
     }
 }
