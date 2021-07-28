@@ -45,27 +45,6 @@ public class WealthServiceTest {
 		Mockito.when(repository.findById(mockedUserId)).thenReturn(Optional.of(mockedWealth));
 	}
 
-	@Test
-	public void newWealthRecord() {
-		service.newWealthRecord(25161L);
-	}
-
-	@Test
-	public void makeWealthExchange() {
-		service.makeWealthExchange(mockedUserId, "USD", BigDecimal.valueOf(150), true);
-		service.makeWealthExchange(mockedUserId, "USD", BigDecimal.valueOf(250), false);
-	}
-	
-	@Test(expected = InsufficientFundsException.class)
-	public void makeWealthExchange_InsufficientFunds_Sell() {
-		service.makeWealthExchange(mockedUserId, "USD", BigDecimal.valueOf(3000), false);
-	}
-	
-	@Test(expected = InsufficientFundsException.class)
-	public void makeWealthExchange_InsufficientFunds_Buy() {
-		service.makeWealthExchange(mockedUserId, "USD", BigDecimal.valueOf(3000), true);
-	}
-	
 	@Test(expected = BadRequestException.class)
 	public void makeWealthExchange_InvalidCurrency() {
 		service.makeWealthExchange(mockedUserId, "XSD", BigDecimal.valueOf(250), false);
